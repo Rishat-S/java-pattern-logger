@@ -23,27 +23,22 @@ public class Main {
             try {
                 System.out.println("Введите размер списка: ");
                 int sizeList = Integer.parseInt(scanner.readLine());
+
                 System.out.println("Введите верхнюю границу для значений: ");
                 int maxValue = Integer.parseInt(scanner.readLine());
 
                 logger.log("Создаём и наполняем список");
-                List<Integer> integerList = new ArrayList<>(sizeList);
-                for (int i = 0; i < sizeList; i++) {
-                    integerList.add(random.nextInt(maxValue));
-                }
+                List<Integer> integerList = getIntegerList(random, sizeList, maxValue);
 
                 System.out.print("Вот случайный список: ");
-                for (Integer integer : integerList) {
-                    System.out.print(integer + " ");
-                }
+                printList(integerList);
 
-                System.out.println();
                 logger.log("Просим пользователя ввести входные данные для фильтрации");
-                System.out.println("Введите порог для фильтра: ");
-                int filterValue = Integer.parseInt(scanner.readLine());
+                System.out.println("Введите порог для фильтра:");
+                int filterThreshold = Integer.parseInt(scanner.readLine());
 
                 logger.log("Запускаем фильтрацию");
-                Filter filter = new Filter(filterValue);
+                Filter filter = new Filter(filterThreshold);
                 List<Integer> filteredList = filter.filterOut(integerList);
 
                 logger.log("Прошло фильтр " +
@@ -53,11 +48,8 @@ public class Main {
 
                 logger.log("Выводим результат на экран");
                 System.out.print("Отфильтрованный список: ");
-                for (Integer integer : filteredList) {
-                    System.out.print(integer + " ");
-                }
+                printList(filteredList);
 
-                System.out.println();
                 logger.log("Завершаем программу");
                 break;
 
@@ -67,5 +59,20 @@ public class Main {
 //                e.printStackTrace();
             }
         }
+    }
+
+    private static List<Integer> getIntegerList(Random random, int sizeList, int maxValue) {
+        List<Integer> integerList = new ArrayList<>(sizeList);
+        for (int i = 0; i < sizeList; i++) {
+            integerList.add(random.nextInt(maxValue));
+        }
+        return integerList;
+    }
+
+    private static void printList(List<Integer> integerList) {
+        for (Integer integer : integerList) {
+            System.out.print(integer + " ");
+        }
+        System.out.println();
     }
 }
