@@ -15,7 +15,6 @@ public class Logger {
             logger = new Logger();
         }
         return logger;
-
     }
 
     public void log(String msg) {

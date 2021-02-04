@@ -55,7 +55,7 @@ public class Main {
 
             } catch (NumberFormatException | IOException e) {
                 logger.log("Не верный ввод пользователя");
-                logger.log("Попробуйте снова");
+                System.out.println("Не верный ввод. Попробуйте снова");
 //                e.printStackTrace();
             }
         }
